@@ -37,7 +37,27 @@
            {% for tag in tags %} 
              <tr>
                <td><a>{{tag.title}}</a></td>
-               <td>{{tag.slug}}</td>
+               
+               <td><a>{{tag.slug}}</a></td>
+              
+             </tr>
+           {% endfor %}
+         </table>
+    </div>
+</div>
+
+<div class="card my-4">
+        <h5 class="card-header">Users</h5>
+    <div class="card-body">
+        <table class="table table-sm">
+           <tr>
+             <th>Username</th>
+             <th>Email</th>
+           </tr>
+           {% for user in users %} 
+             <tr>
+               <td><a>{{user.username}}</a></td>
+               <td><a>{{user.email}}</a></td>
              </tr>
            {% endfor %}
          </table>

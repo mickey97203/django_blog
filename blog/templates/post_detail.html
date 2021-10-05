@@ -1,11 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if details.visible == 0 and details.publish == True %}
 <div class="container">
   <div class="row">
     <div class="col-md-8 card mb-4 mt-3 left top">
       <div class="card-body">
-        <h1>{% block title %} {{details.title }} {% endblock title %}</h1>
+        <h1>{% block title1 %} {{details.title }} {% endblock title1 %}</h1>
+        <p class="text-muted">{{details.author }} | {{details.published_date}}</p>
+        <p class="card-text">{{details.content}}</p>
+      </div>
+        {% if categories and tags %}
+          <p>Categories: {{categories}} | Tags: {{tags}}</p> 
+        {% elif categories %}
+          <p>Categories: {{categories}}</p> 
+        {% elif tags %}
+          <p>Tags: {{tags}}</p> 
+        {% endif %}
+    </div>
+  </div>
+</div>
+{% elif details.visible == 1 and user.is_authenticated  and details.publish == True %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 card mb-4 mt-3 left top">
+      <div class="card-body">
+        <h1>{% block title2 %} {{details.title }} {% endblock title2 %}</h1>
         <p class="text-muted">{{details.author }}</p>
         <p class="card-text">{{details.content}}</p>
       </div>
@@ -19,6 +39,11 @@
     </div>
   </div>
 </div>
+
+{% else %}
+<h1>Sorry you can't access this page. Page is either not published yet or is restricted to only logged users</h1>
+
+{% endif %}
 
 
 {%endblock content %}

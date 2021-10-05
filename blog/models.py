@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from login.models import MyUser
+from datetime import datetime
+import pytz
 
 VISIBLE = (
    (0, 'All'),
@@ -29,7 +31,7 @@ class Post(models.Model):
   author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
   content = models.TextField()
   #image
-  published_date = models.DateTimeField(auto_now_add=True)
+  published_date = models.DateTimeField(auto_now_add=False)
   visible = models.IntegerField(choices=VISIBLE, default=0)
 
   class Meta:
@@ -39,8 +41,11 @@ class Post(models.Model):
   def __str__(self):
     return self.title
 
-
-
+  @property
+  def publish(self):
+    utc = pytz.UTC
+    return self.published_date <= utc.localize(datetime.now())
+    
 
 
 
