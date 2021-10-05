@@ -6,6 +6,7 @@ django-rest-framework:
 django:
   instruction can be found on: https://docs.djangoproject.com/en/3.2/topics/install
 
+pip install Pillow
 
 run program:
   python manage.py migrate

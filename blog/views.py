@@ -54,6 +54,8 @@ class PostDetail(APIView):
     tags = Tag.objects.filter(post__slug=slug)
     tags = list(map(lambda x: x.title, tags))
     tags = ', '.join(tags)
+
+    
     
 #    serializer = PostSerializerDetail(post)
     return Response({'details': post, 'categories': categories, 'tags': tags})

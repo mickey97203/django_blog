@@ -42,21 +42,21 @@
         {%endfor%}
       {% else %}
       {% for post in posts %} 
-      {% if post.visible == 0 %}
-      <div class="card mb-4">
-        <div class="card-body">
-          <h2 class="card-title">{{post.title}}</h2>
-          <p class="card-text text-muted h6">{{post.author}} | {{post.published_date}}</p>
-          <p class="card-text">{{post.content|safe|slice:":200"}}</p>
-          <a href="{% url 'detail' post.slug %}" class="btn btn-primary">Read More</a>
-        </div>        
-      </div>
-      {%endif%}
+        {% if post.visible == 0 and post.publish %}
+        <div class="card mb-4">
+          <div class="card-body">
+            <h2 class="card-title">{{post.title}}</h2>
+            <p class="card-text text-muted h6">{{post.author}} | {{post.published_date}}</p>
+            <p class="card-text">{{post.content|safe|slice:":200"}}</p>
+            <a href="{% url 'detail' post.slug %}" class="btn btn-primary">Read More</a>
+          </div>        
+        </div>
+        {%endif%}
       {% endfor %}
-      {%endif%}
-    </div>
-       {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+    {%endif%}
   </div>
+       {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+</div>
 
 
 

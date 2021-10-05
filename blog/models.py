@@ -30,7 +30,7 @@ class Post(models.Model):
   tags = models.ManyToManyField(Tag, blank=True)
   author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
   content = models.TextField()
-  #image
+  image = models.ImageField(upload_to='images', blank=True)
   published_date = models.DateTimeField(auto_now_add=False)
   visible = models.IntegerField(choices=VISIBLE, default=0)
 

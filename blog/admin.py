@@ -6,6 +6,7 @@ class PostAdmin(admin.ModelAdmin):
   list_filter = ('tags__slug', 'author__username')
   search_fields = ['title',]
 
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag)
 admin.site.register(Category)
