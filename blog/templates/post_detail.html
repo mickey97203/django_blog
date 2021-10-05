@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 card mb-4 mt-3 left top">
+      <div class="card-body">
+        <h1>{% block title %} {{details.title }} {% endblock title %}</h1>
+        <p class="text-muted">{{details.author }}</p>
+        <p class="card-text">{{details.content}}</p>
+      </div>
+        {% if categories and tags %}
+          <p>Categories: {{categories}} | Tags: {{tags}}</p> 
+        {% elif categories %}
+          <p>Categories: {{categories}}</p> 
+        {% elif tags %}
+          <p>Tags: {{tags}}</p> 
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+
+{%endblock content %}

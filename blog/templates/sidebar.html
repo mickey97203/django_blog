@@ -1,0 +1,49 @@
+{% block sidebar %}
+
+<style>
+        .card{
+            box-shadow: 0 16px 48px #E3E7EB;
+        }
+       
+</style>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-right ">
+<div class="card my-4">
+        <h5 class="card-header">Categories</h5>
+    <div class="card-body">
+        <table class="table table-sm">
+           <tr>
+             <th>Title</th>
+             <th>slug</th>
+           </tr>
+           {% for category in categories %} 
+             <tr>
+               <td><a>{{category.title}}</a></td>
+               <td>{{category.slug}}</td>
+             </tr>
+           {% endfor %}
+         </table>
+    </div>
+</div>
+<div class="card my-4">
+        <h5 class="card-header">Tags</h5>
+    <div class="card-body">
+        <table class="table table-sm">
+           <tr>
+             <th>Title</th>
+             <th>slug</th>
+           </tr>
+           {% for tag in tags %} 
+             <tr>
+               <td><a>{{tag.title}}</a></td>
+               <td>{{tag.slug}}</td>
+             </tr>
+           {% endfor %}
+         </table>
+    </div>
+</div>
+
+</div>
+
+{% endblock sidebar %}

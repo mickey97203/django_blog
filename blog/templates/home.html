@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<header class="masthead">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-15 col-md-20 mx-auto">
+        <ul class="navbar-nav mr-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+             <a class="nav-link" href="{% url 'logout' %}" >Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+             <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+   </div>
+</header>
+
+<div class="container">
+  <div class="row">
+  
+    <div class="col-md-8 mt-3 left">
+      {% if user.is_authenticated %}
+        {% for post in posts %}
+          <div class="card mb-4">
+            <div class="card-body">
+             <h2 class="card-title">{{post.title}}</h2>
+             <p class="card-text text-muted h6">{{post.author}} | {{post.published_date}}</p>
+             <p class="card-text">{{post.content|safe|slice:":200"}}</p>
+             <a href="{% url 'detail' post.slug %}" class="btn btn-primary">Read More</a>
+           </div>        
+          </div>
+        {%endfor%}
+      {% else %}
+      {% for post in posts %} 
+      {% if post.visible == 0 %}
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="card-title">{{post.title}}</h2>
+          <p class="card-text text-muted h6">{{post.author}} | {{post.published_date}}</p>
+          <p class="card-text">{{post.content|safe|slice:":200"}}</p>
+          <a href="{% url 'detail' post.slug %}" class="btn btn-primary">Read More</a>
+        </div>        
+      </div>
+      {%endif%}
+      {% endfor %}
+      {%endif%}
+    </div>
+       {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+  </div>
+  
+  {% if is_paginated %}
+    <nav aria-label="Page navigation conatiner"></nav>
+    <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+    {% endif %}
+  </ul>
+  </nav>
+  </div>
+  {% endif %}
+
+
+</div>
+
+
+{%endblock content%}
