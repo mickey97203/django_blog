@@ -31,7 +31,7 @@ class Post(models.Model):
   author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
   content = models.TextField()
   image = models.ImageField(upload_to='images', blank=True)
-  published_date = models.DateTimeField(auto_now_add=False)
+  published_date = models.DateTimeField(auto_now_add=True)
   visible = models.IntegerField(choices=VISIBLE, default=0)
 
   class Meta:

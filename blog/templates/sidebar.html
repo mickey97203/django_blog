@@ -7,48 +7,8 @@
        
 </style>
 
-<!-- Sidebar Widgets Column -->
-<div class="col-md-4 float-right ">
 <div class="card my-4">
-        <h5 class="card-header">Categories</h5>
-    <div class="card-body">
-        <table class="table table-sm">
-           <tr>
-             <th>Title</th>
-             <th>slug</th>
-           </tr>
-           {% for category in categories %} 
-             <tr>
-               <td><a>{{category.title}}</a></td>
-               <td>{{category.slug}}</td>
-             </tr>
-           {% endfor %}
-         </table>
-    </div>
-</div>
-
-<div class="card my-4">
-        <h5 class="card-header">Tags</h5>
-    <div class="card-body">
-        <table class="table table-sm">
-           <tr>
-             <th>Title</th>
-             <th>slug</th>
-           </tr>
-           {% for tag in tags %} 
-             <tr>
-               <td><a>{{tag.title}}</a></td>
-               
-               <td><a>{{tag.slug}}</a></td>
-              
-             </tr>
-           {% endfor %}
-         </table>
-    </div>
-</div>
-
-<div class="card my-4">
-        <h5 class="card-header">Users</h5>
+    <h5 class="card-header">Users</h5>
     <div class="card-body">
         <table class="table table-sm">
            <tr>
@@ -57,10 +17,14 @@
            </tr>
            {% for user in users %} 
              <tr>
-               <td><a>{{user.username}}</a></td>
-               <td><a>{{user.email}}</a></td>
+               <td><a href="{% url 'post-filter' user.id%}">{{user.username}}</a></td>
+               <td>{{user.email}}</td>
              </tr>
            {% endfor %}
+           <tr>
+             <td><a href="{% url 'post-list' %}">all</a></td>
+             <td> 
+           </tr>
          </table>
     </div>
 </div>
